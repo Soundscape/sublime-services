@@ -55,5 +55,6 @@
     <None Include=".gitignore" />
     <None Include="README.md" />
     <None Include="LICENSE" />
+    <None Include="Sublime.Services.nuspec" />
   </ItemGroup>
 </Project>

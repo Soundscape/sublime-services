@@ -1,0 +1,9 @@
+/home/shaun/projects/.net/Sublime/Sublime.Services/obj/Release/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/home/shaun/projects/.net/Sublime/Sublime.Services/bin/Release/Sublime.Services.dll.mdb
+/home/shaun/projects/.net/Sublime/Sublime.Services/bin/Release/Sublime.Services.dll
+/home/shaun/projects/.net/Sublime/Sublime.Services/obj/Release/Sublime.Services.dll
+/home/shaun/projects/.net/Sublime/Sublime.Services/obj/Release/Sublime.Services.dll.mdb
+/home/shaun/projects/.net/Sublime/Sublime.Services/bin/Release/Mono.Cecil.dll
+/home/shaun/projects/.net/Sublime/Sublime.Services/bin/Release/Mono.Cecil.Mdb.dll
+/home/shaun/projects/.net/Sublime/Sublime.Services/bin/Release/Mono.Cecil.Pdb.dll
+/home/shaun/projects/.net/Sublime/Sublime.Services/bin/Release/Mono.Cecil.Rocks.dll

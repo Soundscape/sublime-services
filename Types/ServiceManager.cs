@@ -19,7 +19,7 @@ namespace Sublime.Services
 			this.Services = Directory.GetFiles (directory, "*.dll", SearchOption.AllDirectories)
 				.Select (path => new TypeInspector (path))
 				.SelectMany (inspector => inspector.GetServices ())
-				.ToDictionary(info => info.TypeName, info => new ServiceState { Info = info });
+				.ToDictionary(info => info.ServiceInfo.Key, info => new ServiceState { Info = info });
 		}
 
 		public void Start(string key) {

@@ -4,9 +4,15 @@ namespace Sublime.Services
 {
 	public interface IService : IDisposable
 	{
+		#region Properties
+
+		ServiceInfo Info { get; }
+
+		#endregion
+
 		#region Methods
 
-		void Start (params object[] args);
+		void Start ();
 
 		void Stop ();
 
@@ -21,3 +27,4 @@ namespace Sublime.Services
 		#endregion
 	}
 }
+

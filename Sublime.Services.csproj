@@ -41,13 +41,22 @@
     <Reference Include="Mono.Cecil.Rocks">
       <HintPath>..\packages\Mono.Cecil.0.9.6.1\lib\net45\Mono.Cecil.Rocks.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="IService.cs" />
-    <Compile Include="ServiceAttribute.cs" />
-    <Compile Include="ServiceFactory.cs" />
-    <Compile Include="ServiceInfo.cs" />
+    <Compile Include="Interfaces\IService.cs" />
+    <Compile Include="DataTypes\ServiceInfo.cs" />
+    <Compile Include="Enums\ServiceStartup.cs" />
+    <Compile Include="DataTypes\ServiceHostInfo.cs" />
+    <Compile Include="DataTypes\ServiceState.cs" />
+    <Compile Include="Types\TypeInspector.cs" />
+    <Compile Include="Types\ServiceBase.cs" />
+    <Compile Include="Types\ServiceManager.cs" />
+    <Compile Include="Types\ConfigFile.cs" />
+    <Compile Include="Extensions\ServiceHostInfoExtensions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -56,5 +65,12 @@
     <None Include="README.md" />
     <None Include="LICENSE" />
     <None Include="Sublime.Services.nuspec" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Interfaces\" />
+    <Folder Include="DataTypes\" />
+    <Folder Include="Enums\" />
+    <Folder Include="Types\" />
+    <Folder Include="Extensions\" />
   </ItemGroup>
 </Project>

@@ -39,6 +39,8 @@ namespace Sublime.Services
 				this.OnStart(this, EventArgs.Empty);
 
 			this.executionTask = Task.Factory.StartNew (() => {
+				this.cancellationToken.ThrowIfCancellationRequested();
+
 				do {
 					if (this.cancellationSource.IsCancellationRequested)
 						this.cancellationToken.ThrowIfCancellationRequested();

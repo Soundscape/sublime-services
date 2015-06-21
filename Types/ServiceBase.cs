@@ -21,9 +21,9 @@ namespace Sublime.Services
 
 		#region Members
 
-		CancellationTokenSource cancellationSource;
-		CancellationToken cancellationToken;
-		Task executionTask;
+		protected CancellationTokenSource cancellationSource;
+		protected CancellationToken cancellationToken;
+		protected Task executionTask;
 
 		#endregion
 
@@ -41,13 +41,7 @@ namespace Sublime.Services
 			this.executionTask = Task.Factory.StartNew (() => {
 				this.cancellationToken.ThrowIfCancellationRequested();
 
-				do {
-					if (this.cancellationSource.IsCancellationRequested)
-						this.cancellationToken.ThrowIfCancellationRequested();
-
-					this.ExecutionTask();
-				}
-				while (true);
+				this.ExecutionTask();
 			}, this.cancellationToken);
 		}
 

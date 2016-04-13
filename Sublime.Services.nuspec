@@ -2,13 +2,12 @@
 <package >
   <metadata>
     <id>Sublime.Services</id>
-    <version>$version$</version>
-    <title>$title$</title>
+    <version>1.0.6</version>
+    <title>Sublime Services</title>
     <authors>Shaun Farrell</authors>
     <owners>Shaun Farrell</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>$description$</description>
-    <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
+    <description>Simple service host for child app domains.</description>
     <copyright>Copyright 2016</copyright>
     <tags>Service Host</tags>
     <dependencies>

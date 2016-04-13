@@ -4,76 +4,87 @@ using System.Threading;
 
 namespace Sublime.Services
 {
-	public abstract class ServiceBase : MarshalByRefObject, IService
-	{
-		#region Events
+    public abstract class ServiceBase : MarshalByRefObject, IService
+    {
+        #region Events
 
-		public event EventHandler OnStart;
-		public event EventHandler OnStop;
+        public event EventHandler OnStart;
+        public event EventHandler OnStop;
 
-		#endregion
+        #endregion
 
-		#region Properties
+        #region Properties
 
-		public ServiceInfo Info { get; protected set; }
+        public ServiceInfo Info { get; protected set; }
 
-		#endregion
+        #endregion
 
-		#region Members
+        #region Members
 
-		protected CancellationTokenSource cancellationSource;
-		protected CancellationToken cancellationToken;
-		protected Task executionTask;
+        protected CancellationTokenSource cancellationSource;
+        protected CancellationToken cancellationToken;
+        protected Task executionTask;
 
-		#endregion
+        #endregion
 
-		#region Methods
+        #region Methods
 
-		protected abstract void ExecutionTask ();
+        protected abstract void ExecutionTask();
 
-		public virtual void Start() {
-			this.cancellationSource = new CancellationTokenSource ();
-			this.cancellationToken = this.cancellationSource.Token;
+        public virtual void Start()
+        {
+            this.cancellationSource = new CancellationTokenSource();
+            this.cancellationToken = this.cancellationSource.Token;
 
-			if (null != this.OnStart)
-				this.OnStart(this, EventArgs.Empty);
+            if (null != this.OnStart)
+                this.OnStart(this, EventArgs.Empty);
 
-			this.executionTask = Task.Factory.StartNew (() => {
-				this.cancellationToken.ThrowIfCancellationRequested();
+            this.executionTask = Task.Factory.StartNew(() =>
+            {
+                while (true)
+                {
+                    this.cancellationToken.ThrowIfCancellationRequested();
+                    this.ExecutionTask();
+                }
+            }, this.cancellationToken);
+        }
 
-				this.ExecutionTask();
-			}, this.cancellationToken);
-		}
+        public virtual void Stop()
+        {
+            this.Dispose();
 
-		public virtual void Stop() {
-			this.Dispose ();
+            if (null != this.OnStop)
+                this.OnStop(this, EventArgs.Empty);
+        }
 
-			if (null != this.OnStop)
-				this.OnStop(this, EventArgs.Empty);
-		}
+        public virtual void Dispose()
+        {
+            if (null != this.executionTask)
+            {
+                if (!this.executionTask.IsCanceled)
+                {
+                    try
+                    {
+                        this.cancellationSource.Cancel();
+                        this.executionTask.Wait();
+                    }
+                    catch (AggregateException)
+                    {
+                    }
+                    finally
+                    {
+                        this.executionTask.Dispose();
+                    }
+                }
 
-		public virtual void Dispose () {
-			if (null != this.executionTask) {
-				if (!this.executionTask.IsCanceled) {
-					try {
-						this.cancellationSource.Cancel ();
-						this.executionTask.Wait ();
-					}
-					catch (AggregateException) {
-					}
-					finally {
-						this.executionTask.Dispose ();
-					}
-				}
+                this.executionTask = null;
+                this.cancellationSource.Dispose();
+                this.cancellationSource = null;
+                this.cancellationToken = CancellationToken.None;
+            }
+        }
 
-				this.executionTask = null;
-				this.cancellationSource.Dispose ();
-				this.cancellationSource = null;
-				this.cancellationToken = CancellationToken.None;
-			}
-		}
-
-		#endregion
-	}
+        #endregion
+    }
 }
 

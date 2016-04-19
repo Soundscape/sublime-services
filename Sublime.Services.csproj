@@ -57,6 +57,7 @@
     <Compile Include="Enums\ServiceStartup.cs" />
     <Compile Include="DataTypes\ServiceHostInfo.cs" />
     <Compile Include="DataTypes\ServiceState.cs" />
+    <Compile Include="Types\ServiceEventArgs.cs" />
     <Compile Include="Types\TypeInspector.cs" />
     <Compile Include="Types\ServiceBase.cs" />
     <Compile Include="Types\ServiceManager.cs" />

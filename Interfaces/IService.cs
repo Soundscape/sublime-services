@@ -2,29 +2,28 @@
 
 namespace Sublime.Services
 {
-	public interface IService : IDisposable
-	{
-		#region Properties
+    public interface IService : IDisposable
+    {
+        #region Properties
 
-		ServiceInfo Info { get; }
+        ServiceInfo Info { get; }
 
-		#endregion
+        #endregion
 
-		#region Methods
+        #region Methods
 
-		void Start ();
+        void Start();
 
-		void Stop ();
+        void Stop();
 
-		#endregion
+        #endregion
 
-		#region Events
+        #region Events
 
-		event EventHandler OnStart;
+        event EventHandler<ServiceEventArgs> OnStart;
+        event EventHandler<ServiceEventArgs> OnStop;
 
-		event EventHandler OnStop;
-
-		#endregion
-	}
+        #endregion
+    }
 }
 

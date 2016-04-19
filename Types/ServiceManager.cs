@@ -108,13 +108,13 @@ namespace Sublime.Services
         void Service_OnStop(object sender, ServiceEventArgs e)
         {
             if (null != this.OnStop)
-                this.OnStop(this, e);
+                this.OnStop(null, e);
         }
 
         void Service_OnStart(object sender, ServiceEventArgs e)
         {
             if (null != this.OnStart)
-                this.OnStart(this, e);
+                this.OnStart(null, e);
         }
 
         #endregion

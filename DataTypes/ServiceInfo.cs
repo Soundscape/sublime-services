@@ -2,6 +2,7 @@
 
 namespace Sublime.Services
 {
+    [Serializable]
 	public class ServiceInfo
 	{
 		#region Properties

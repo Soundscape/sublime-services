@@ -8,8 +8,20 @@ namespace Sublime.Services
     {
         #region Events
 
-        public event EventHandler<ServiceEventArgs> OnStart;
-        public event EventHandler<ServiceEventArgs> OnStop;
+        public event EventHandler<ServiceEventArgs> OnStart
+        {
+            add { onStart += value; }
+            remove { onStart -= value; }
+        }
+
+        public event EventHandler<ServiceEventArgs> OnStop
+        {
+            add { onStop += value; }
+            remove { onStop -= value; }
+        }
+
+        private EventHandler<ServiceEventArgs> onStart;
+        private EventHandler<ServiceEventArgs> onStop;
 
         #endregion
 
@@ -36,8 +48,8 @@ namespace Sublime.Services
             this.cancellationSource = new CancellationTokenSource();
             this.cancellationToken = this.cancellationSource.Token;
 
-            if (null != this.OnStart)
-                this.OnStart(null, new ServiceEventArgs { ServiceInfo = Info });
+            if (null != this.onStart)
+                this.onStart(null, new ServiceEventArgs { ServiceInfo = Info });
 
             this.executionTask = Task.Factory.StartNew(() =>
             {
@@ -53,8 +65,8 @@ namespace Sublime.Services
         {
             this.Dispose();
 
-            if (null != this.OnStop)
-                this.OnStop(null, new ServiceEventArgs { ServiceInfo = Info });
+            if (null != this.onStop)
+                this.onStop(null, new ServiceEventArgs { ServiceInfo = Info });
         }
 
         public virtual void Dispose()

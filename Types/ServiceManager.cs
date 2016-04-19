@@ -9,8 +9,20 @@ namespace Sublime.Services
     {
         #region Events
 
-        public event EventHandler<ServiceEventArgs> OnStart;
-        public event EventHandler<ServiceEventArgs> OnStop;
+        public event EventHandler<ServiceEventArgs> OnStart
+        {
+            add { onStart += value; }
+            remove { onStart -= value; }
+        }
+
+        public event EventHandler<ServiceEventArgs> OnStop
+        {
+            add { onStop += value; }
+            remove { onStop -= value; }
+        }
+
+        private EventHandler<ServiceEventArgs> onStart;
+        private EventHandler<ServiceEventArgs> onStop;
 
         #endregion
 
@@ -107,14 +119,14 @@ namespace Sublime.Services
 
         void Service_OnStop(object sender, ServiceEventArgs e)
         {
-            if (null != this.OnStop)
-                this.OnStop(null, e);
+            if (null != this.onStop)
+                this.onStop(this, e);
         }
 
         void Service_OnStart(object sender, ServiceEventArgs e)
         {
-            if (null != this.OnStart)
-                this.OnStart(null, e);
+            if (null != this.onStart)
+                this.onStart(null, e);
         }
 
         #endregion

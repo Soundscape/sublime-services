@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Sublime.Services
 {
-    public class ServiceManager : IDisposable
+    public class ServiceManager : MarshalByRefObject, IDisposable
     {
         #region Events
 

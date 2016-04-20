@@ -56,15 +56,15 @@ namespace Sublime.Services
                 AppDomain domain;
                 state.Service = state.Info.Marshal(out domain);
                 state.Domain = domain;
-
-                state.Service.OnStart += Service_OnStart;
-                state.Service.OnStop += Service_OnStop;
             }
             else if (null == state.Service)
                 state.Service = state.Info.Marshal(state.Domain);
 
             if (!state.Active)
             {
+                state.Service.OnStart += Service_OnStart;
+                state.Service.OnStop += Service_OnStop;
+
                 state.Service.Start();
                 state.Active = true;
             }
@@ -126,7 +126,7 @@ namespace Sublime.Services
         void Service_OnStart(object sender, ServiceEventArgs e)
         {
             if (null != this.onStart)
-                this.onStart(null, e);
+                this.onStart(this, e);
         }
 
         #endregion

@@ -49,7 +49,7 @@ namespace Sublime.Services
             this.cancellationToken = this.cancellationSource.Token;
 
             if (null != this.onStart)
-                this.onStart(null, new ServiceEventArgs { ServiceInfo = Info });
+                this.onStart(this, new ServiceEventArgs { ServiceInfo = Info });
 
             this.executionTask = Task.Factory.StartNew(() =>
             {
@@ -66,7 +66,7 @@ namespace Sublime.Services
             this.Dispose();
 
             if (null != this.onStop)
-                this.onStop(null, new ServiceEventArgs { ServiceInfo = Info });
+                this.onStop(this, new ServiceEventArgs { ServiceInfo = Info });
         }
 
         public virtual void Dispose()

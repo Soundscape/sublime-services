@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Sublime.Services
 {
+    [Serializable]
     public class ServiceEventArgs : EventArgs
     {
         public ServiceInfo ServiceInfo { get; set; }

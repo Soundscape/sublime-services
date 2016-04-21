@@ -65,8 +65,8 @@ namespace Sublime.Services
                 state.Service.OnStart += Service_OnStart;
                 state.Service.OnStop += Service_OnStop;
 
-                state.Service.Start();
                 state.Active = true;
+                state.Service.Start();
             }
         }
 
@@ -81,13 +81,13 @@ namespace Sublime.Services
 
             if (state.Active)
             {
+                state.Active = false;
                 state.Service.Stop();
 
                 state.Service.OnStart -= Service_OnStart;
                 state.Service.OnStop -= Service_OnStop;
 
                 state.Service = null;
-                state.Active = false;
             }
         }
 
